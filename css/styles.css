@@ -954,6 +954,18 @@ input, select, textarea {
   gap: var(--space-xl);
 }
 
+.contact-info {
+  text-align: center;
+}
+
+.contact-info .contact-info-list {
+  align-items: center;
+}
+
+.contact-info .contact-social {
+  justify-content: center;
+}
+
 .contact-info-title {
   font-family: var(--font-heading);
   font-size: 1.5rem;
@@ -1133,8 +1145,8 @@ input, select, textarea {
 }
 
 /* Form Status Messages */
-.form-success,
-.form-error-msg {
+.form-success:not([hidden]),
+.form-error-msg:not([hidden]) {
   display: flex;
   align-items: center;
   gap: var(--space-sm);
@@ -1175,6 +1187,18 @@ input, select, textarea {
     grid-template-columns: 1fr 1.6fr;
     gap: var(--space-xl);
     align-items: start;
+  }
+
+  .contact-info {
+    text-align: left;
+  }
+
+  .contact-info .contact-info-list {
+    align-items: flex-start;
+  }
+
+  .contact-info .contact-social {
+    justify-content: flex-start;
   }
 }
 
