@@ -14,10 +14,10 @@
   right: 0;
   z-index: 1000;
   height: var(--header-height);
-  background-color: rgba(10, 10, 10, 0.88);
+  background-color: rgba(254, 252, 246, 0.92);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(201, 168, 76, 0.15);
+  border-bottom: 1px solid rgba(201, 168, 76, 0.3);
 }
 
 .book-header-inner {
@@ -43,7 +43,7 @@
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: rgba(245, 230, 204, 0.55);
+  color: rgba(58, 50, 41, 0.55);
   transition: color var(--transition-fast);
   padding: 8px 10px;
   border-radius: var(--radius-sm);
@@ -51,7 +51,7 @@
 
 .book-header-link:hover,
 .book-header-link:focus-visible {
-  color: var(--color-gold-light);
+  color: var(--color-gold-dark);
 }
 
 /* ============================================================
@@ -64,7 +64,7 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  background-color: var(--color-black);
+  background-color: var(--color-cream);
 }
 
 .book-hero-content {
@@ -108,7 +108,7 @@
 
 .btn--tiktok {
   background: transparent;
-  color: var(--color-gold-light);
+  color: var(--color-gold-dark);
   border: 1.5px solid var(--color-gold);
 }
 
@@ -138,7 +138,7 @@
   flex-direction: column;
   align-items: center;
   gap: 8px;
-  color: rgba(245, 230, 204, 0.45);
+  color: rgba(58, 50, 41, 0.45);
   font-size: 0.78rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -150,7 +150,7 @@
 
 .book-hero-scroll:hover,
 .book-hero-scroll:focus-visible {
-  color: var(--color-gold-light);
+  color: var(--color-gold-dark);
 }
 
 .book-hero-scroll i {
@@ -173,13 +173,13 @@
    BOOKING FORM SECTION
    ============================================================ */
 .book-form-section {
-  background-color: var(--color-black-soft);
+  background-color: var(--color-cream-alt);
   padding: var(--space-xl) 0;
 }
 
 .book-form-subtext {
   font-size: 0.95rem;
-  color: rgba(245, 230, 204, 0.45);
+  color: var(--color-text-muted);
   margin-top: var(--space-xs);
   font-style: italic;
 }
@@ -194,7 +194,7 @@
 
 .book-social-footer-text {
   font-size: 0.82rem;
-  color: rgba(245, 230, 204, 0.4);
+  color: rgba(58, 50, 41, 0.5);
   letter-spacing: 0.05em;
   text-transform: uppercase;
   margin-bottom: var(--space-sm);
@@ -208,8 +208,8 @@
    FOOTER
    ============================================================ */
 .book-footer {
-  background-color: var(--color-black);
-  border-top: 1px solid rgba(201, 168, 76, 0.1);
+  background-color: var(--color-cream-deep);
+  border-top: 1px solid rgba(201, 168, 76, 0.3);
   padding: var(--space-md) 0;
 }
 
@@ -225,7 +225,7 @@
   font-size: 0.78rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: rgba(245, 230, 204, 0.35);
+  color: rgba(58, 50, 41, 0.45);
   transition: color var(--transition-fast);
   padding: 4px 8px;
   border-radius: var(--radius-sm);
@@ -233,7 +233,7 @@
 
 .book-footer-link:hover,
 .book-footer-link:focus-visible {
-  color: var(--color-gold-light);
+  color: var(--color-gold-dark);
 }
 
 /* ============================================================
