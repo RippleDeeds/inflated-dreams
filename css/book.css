@@ -1,0 +1,251 @@
+/* ============================================================
+   INFLATED DREAMS — Book Page Stylesheet
+   QR code landing page for event bookings
+   Extends css/styles.css — do not use standalone
+   ============================================================ */
+
+/* ============================================================
+   BRAND HEADER
+   ============================================================ */
+.book-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  height: var(--header-height);
+  background-color: rgba(10, 10, 10, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(201, 168, 76, 0.15);
+}
+
+.book-header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  padding: 0 var(--space-sm);
+}
+
+.book-header-logo-img {
+  height: 120px;
+  margin-top: 25px;
+  width: auto;
+  object-fit: contain;
+}
+
+.book-header-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(245, 230, 204, 0.55);
+  transition: color var(--transition-fast);
+  padding: 8px 10px;
+  border-radius: var(--radius-sm);
+}
+
+.book-header-link:hover,
+.book-header-link:focus-visible {
+  color: var(--color-gold-light);
+}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.book-hero {
+  position: relative;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-color: var(--color-black);
+}
+
+.book-hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: calc(var(--header-height) + var(--space-lg)) var(--space-sm) var(--space-xl);
+  max-width: 680px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* ============================================================
+   SOCIAL CTA BUTTONS
+   ============================================================ */
+.book-social-cta {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-md);
+}
+
+.btn--social {
+  font-size: 0.95rem;
+  padding: 16px 28px;
+  border-radius: var(--radius-md);
+  gap: 12px;
+}
+
+.btn--instagram {
+  background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-rose-gold) 100%);
+  color: var(--color-black);
+}
+
+.btn--instagram:hover,
+.btn--instagram:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(201, 168, 76, 0.4);
+  color: var(--color-black);
+}
+
+.btn--tiktok {
+  background: transparent;
+  color: var(--color-gold-light);
+  border: 1.5px solid var(--color-gold);
+}
+
+.btn--tiktok:hover,
+.btn--tiktok:focus-visible {
+  background: rgba(201, 168, 76, 0.1);
+  transform: translateY(-2px);
+}
+
+@media (min-width: 480px) {
+  .book-social-cta {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .btn--social {
+    flex: 1;
+    max-width: 240px;
+  }
+}
+
+/* ============================================================
+   HERO SCROLL INVITATION
+   ============================================================ */
+.book-hero-scroll {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: rgba(245, 230, 204, 0.45);
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: color var(--transition-fast);
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+}
+
+.book-hero-scroll:hover,
+.book-hero-scroll:focus-visible {
+  color: var(--color-gold-light);
+}
+
+.book-hero-scroll i {
+  animation: bounceDownIcon 1.8s ease-in-out infinite;
+  font-size: 3.6rem;
+}
+
+@keyframes bounceDownIcon {
+  0%, 100% { transform: translateY(0);   opacity: 0.6; }
+  50%       { transform: translateY(6px); opacity: 1;   }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .book-hero-scroll i {
+    animation: none;
+  }
+}
+
+/* ============================================================
+   BOOKING FORM SECTION
+   ============================================================ */
+.book-form-section {
+  background-color: var(--color-black-soft);
+  padding: var(--space-xl) 0;
+}
+
+.book-form-subtext {
+  font-size: 0.95rem;
+  color: rgba(245, 230, 204, 0.45);
+  margin-top: var(--space-xs);
+  font-style: italic;
+}
+
+/* ============================================================
+   SOCIAL FOOTER (below form)
+   ============================================================ */
+.book-social-footer {
+  text-align: center;
+  margin-top: var(--space-lg);
+}
+
+.book-social-footer-text {
+  font-size: 0.82rem;
+  color: rgba(245, 230, 204, 0.4);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: var(--space-sm);
+}
+
+.book-social-footer-icons {
+  justify-content: center;
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.book-footer {
+  background-color: var(--color-black);
+  border-top: 1px solid rgba(201, 168, 76, 0.1);
+  padding: var(--space-md) 0;
+}
+
+.book-footer-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-xs);
+  text-align: center;
+}
+
+.book-footer-link {
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(245, 230, 204, 0.35);
+  transition: color var(--transition-fast);
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+}
+
+.book-footer-link:hover,
+.book-footer-link:focus-visible {
+  color: var(--color-gold-light);
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (min-width: 768px) {
+  .book-header-inner {
+    padding: 0 var(--space-md);
+  }
+
+  .book-footer-inner {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
