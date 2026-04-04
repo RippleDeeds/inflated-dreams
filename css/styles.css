@@ -19,6 +19,13 @@
   --color-white:        #FAF8F5;
   --color-services-bg:  #F7F0E6;
 
+  --color-cream:        #FEFCF6;
+  --color-cream-alt:    #F5EDE0;
+  --color-cream-deep:   #EDE5D8;
+  --color-text-heading: #1A1614;
+  --color-text-primary: #3A3229;
+  --color-text-muted:   rgba(58, 50, 41, 0.6);
+
   --font-heading: 'Playfair Display', Georgia, serif;
   --font-body:    'Lato', 'Helvetica Neue', Arial, sans-serif;
 
@@ -31,7 +38,7 @@
   --radius-lg:  20px;
 
   --shadow-gold: 0 0 24px rgba(201, 168, 76, 0.3);
-  --shadow-card: 0 4px 24px rgba(0,0,0,0.4);
+  --shadow-card: 0 4px 24px rgba(58, 50, 41, 0.1);
 
   --header-height: 70px;
 
@@ -59,8 +66,8 @@ html {
 
 body {
   font-family: var(--font-body);
-  background-color: var(--color-black);
-  color: var(--color-champagne);
+  background-color: var(--color-cream);
+  color: var(--color-text-primary);
   line-height: 1.6;
   overflow-x: hidden;
 }
@@ -141,8 +148,14 @@ input, select, textarea {
     transform: none;
     transition: none;
   }
-  .balloon {
+  .balloon,
+  .balloon-sway,
+  .balloon-body,
+  .balloon-shimmer {
     animation: none !important;
+  }
+  .balloons-container {
+    transition: none !important;
   }
   .hero-parallax-layer {
     transform: none !important;
@@ -166,10 +179,10 @@ input, select, textarea {
 }
 
 .site-header.scrolled {
-  background-color: rgba(10, 10, 10, 0.95);
+  background-color: rgba(254, 252, 246, 0.95);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  box-shadow: 0 1px 0 rgba(201, 168, 76, 0.2);
+  box-shadow: 0 1px 0 rgba(201, 168, 76, 0.3);
 }
 
 .nav-container {
@@ -200,7 +213,7 @@ input, select, textarea {
   font-family: var(--font-heading);
   font-size: 1.1rem;
   font-weight: 600;
-  color: var(--color-champagne);
+  color: var(--color-text-heading);
   letter-spacing: 0.02em;
   display: none;
 }
@@ -216,7 +229,7 @@ input, select, textarea {
   font-weight: 400;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--color-champagne);
+  color: var(--color-text-primary);
   position: relative;
   padding-bottom: 4px;
   transition: color var(--transition-fast);
@@ -291,7 +304,7 @@ input, select, textarea {
   display: block;
   width: 100%;
   height: 2px;
-  background-color: var(--color-champagne);
+  background-color: var(--color-text-heading);
   border-radius: 2px;
   transition: transform var(--transition-base), opacity var(--transition-base), background-color var(--transition-fast);
 }
@@ -312,7 +325,7 @@ input, select, textarea {
 .mobile-menu {
   position: fixed;
   inset: 0;
-  background-color: var(--color-black);
+  background-color: var(--color-cream);
   z-index: 1001;
   display: flex;
   flex-direction: column;
@@ -341,7 +354,7 @@ input, select, textarea {
   align-items: center;
   justify-content: center;
   font-size: 1.5rem;
-  color: var(--color-champagne);
+  color: var(--color-text-heading);
   border-radius: var(--radius-sm);
   transition: color var(--transition-fast);
 }
@@ -364,7 +377,7 @@ input, select, textarea {
   font-family: var(--font-heading);
   font-size: 2rem;
   font-weight: 600;
-  color: var(--color-champagne);
+  color: var(--color-text-heading);
   letter-spacing: 0.04em;
   transition: color var(--transition-fast);
 }
@@ -382,7 +395,7 @@ input, select, textarea {
 }
 
 .mobile-social a {
-  color: var(--color-champagne);
+  color: var(--color-text-primary);
   transition: color var(--transition-fast);
 }
 
@@ -429,7 +442,7 @@ input, select, textarea {
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  background-color: var(--color-black);
+  background-color: var(--color-cream);
 }
 
 .hero-parallax-layer {
@@ -443,7 +456,7 @@ input, select, textarea {
   position: absolute;
   border-radius: 50%;
   filter: blur(80px);
-  opacity: 0.25;
+  opacity: 0.35;
 }
 
 .hero-glow--gold {
@@ -462,18 +475,28 @@ input, select, textarea {
   background: radial-gradient(circle, var(--color-rose-gold) 0%, transparent 70%);
 }
 
-/* Floating Balloons */
+/* Floating Balloons — layered animation system */
 .balloons-container {
   position: absolute;
   inset: 0;
   z-index: 1;
   pointer-events: none;
   overflow: hidden;
+  will-change: transform;
+  transition: transform 0.15s ease-out;
 }
 
 .balloon {
   position: absolute;
-  animation: floatUp linear infinite;
+  animation: balloonRise var(--rise-dur, 16s) cubic-bezier(0.25, 0.1, 0.25, 1) var(--rise-del, 0s) infinite;
+}
+
+.balloon-sway {
+  animation: balloonSway var(--sway-dur, 4s) ease-in-out var(--sway-del, 0s) infinite alternate;
+}
+
+.balloon-body {
+  animation: balloonWobble var(--wob-dur, 3s) ease-in-out infinite alternate;
 }
 
 .balloon svg {
@@ -481,17 +504,51 @@ input, select, textarea {
   height: 100%;
 }
 
-.balloon--1 { width: 50px; bottom: -80px; left: 8%; animation-duration: 14s; animation-delay: 0s; }
-.balloon--2 { width: 38px; bottom: -80px; left: 25%; animation-duration: 18s; animation-delay: 3s; }
-.balloon--3 { width: 60px; bottom: -80px; left: 55%; animation-duration: 12s; animation-delay: 6s; }
-.balloon--4 { width: 44px; bottom: -80px; left: 72%; animation-duration: 16s; animation-delay: 1.5s; }
-.balloon--5 { width: 32px; bottom: -80px; left: 88%; animation-duration: 20s; animation-delay: 9s; }
+.balloon--far  { filter: blur(1.5px); }
 
-@keyframes floatUp {
-  0%   { transform: translateY(0) rotate(0deg);  opacity: 0; }
+.balloon-shimmer {
+  animation: balloonShimmer var(--shim-dur, 5s) ease-in-out infinite alternate;
+}
+
+.balloon--1  { width: 50px;  bottom: -80px;  left: 8%;  --rise-dur: 14s;   --rise-del: 0s;    --sway: 20px;  --sway-dur: 3.5s; --sway-del: 0.2s;  --wob-from: -3deg; --wob-to: 4deg;  --wob-dur: 2.8s; }
+.balloon--2  { width: 38px;  bottom: -80px;  left: 25%; --rise-dur: 18s;   --rise-del: 3s;    --sway: -15px; --sway-dur: 4.2s; --sway-del: 1s;    --wob-from: -2deg; --wob-to: 5deg;  --wob-dur: 3.2s; }
+.balloon--3  { width: 60px;  bottom: -80px;  left: 55%; --rise-dur: 12s;   --rise-del: 6s;    --sway: 28px;  --sway-dur: 3.8s; --sway-del: 0.5s;  --wob-from: -4deg; --wob-to: 3deg;  --wob-dur: 2.5s; }
+.balloon--4  { width: 44px;  bottom: -80px;  left: 72%; --rise-dur: 16s;   --rise-del: 1.5s;  --sway: -22px; --sway-dur: 5s;   --sway-del: 1.8s;  --wob-from: -2deg; --wob-to: 6deg;  --wob-dur: 3.5s; }
+.balloon--5  { width: 32px;  bottom: -80px;  left: 88%; --rise-dur: 22s;   --rise-del: 9s;    --sway: 12px;  --sway-dur: 6s;   --sway-del: 2s;    --wob-from: -1deg; --wob-to: 3deg;  --wob-dur: 4s; }
+.balloon--6  { width: 42px;  bottom: -80px;  left: 3%;  --rise-dur: 15s;   --rise-del: 2.5s;  --sway: -18px; --sway-dur: 3.3s; --sway-del: 0.8s;  --wob-from: -3deg; --wob-to: 5deg;  --wob-dur: 2.6s; }
+.balloon--7  { width: 36px;  bottom: -80px;  left: 35%; --rise-dur: 23s;   --rise-del: 7.5s;  --sway: 10px;  --sway-dur: 5.5s; --sway-del: 2.5s;  --wob-from: -2deg; --wob-to: 2deg;  --wob-dur: 4.2s; }
+.balloon--8  { width: 88px;  bottom: -100px; left: 62%; --rise-dur: 17s;   --rise-del: 4s;    --sway: -25px; --sway-dur: 4.5s; --sway-del: 1.2s;  --wob-from: -2deg; --wob-to: 4deg;  --wob-dur: 3s; }
+.balloon--9  { width: 46px;  bottom: -80px;  left: 79%; --rise-dur: 13.5s; --rise-del: 11s;   --sway: 22px;  --sway-dur: 3.2s; --sway-del: 0.4s;  --wob-from: -4deg; --wob-to: 3deg;  --wob-dur: 2.4s; }
+.balloon--10 { width: 40px;  bottom: -80px;  left: 45%; --rise-dur: 26s;   --rise-del: 5.5s;  --sway: -8px;  --sway-dur: 6.5s; --sway-del: 3s;    --wob-from: -1deg; --wob-to: 2deg;  --wob-dur: 4.5s; }
+.balloon--11 { width: 50px;  bottom: -80px;  left: 15%; --rise-dur: 16s;   --rise-del: 3.5s;  --sway: 16px;  --sway-dur: 4s;   --sway-del: 1.5s;  --wob-from: -3deg; --wob-to: 4deg;  --wob-dur: 3s; }
+.balloon--12 { width: 75px;  bottom: -90px;  left: 30%; --rise-dur: 19s;   --rise-del: 8s;    --sway: -20px; --sway-dur: 4.8s; --sway-del: 2.2s;  --wob-from: -2deg; --wob-to: 5deg;  --wob-dur: 3.4s; }
+.balloon--13 { width: 30px;  bottom: -90px;  left: 58%; --rise-dur: 14s;   --rise-del: 12s;   --sway: 30px;  --sway-dur: 3s;   --sway-del: 0.3s;  --wob-from: -5deg; --wob-to: 4deg;  --wob-dur: 2.2s; }
+.balloon--14 { width: 115px; bottom: -100px; left: 67%; --rise-dur: 24s;   --rise-del: 6s;    --sway: -12px; --sway-dur: 5.8s; --sway-del: 2.8s;  --wob-from: -1deg; --wob-to: 3deg;  --wob-dur: 4s; }
+.balloon--15 { width: 48px;  bottom: -80px;  left: 18%; --rise-dur: 11s;   --rise-del: 1s;    --sway: 24px;  --sway-dur: 2.8s; --sway-del: 0.1s;  --wob-from: -4deg; --wob-to: 6deg;  --wob-dur: 2s; }
+.balloon--16 { width: 44px;  bottom: -80px;  left: 83%; --rise-dur: 17s;   --rise-del: 4s;    --sway: -16px; --sway-dur: 4.3s; --sway-del: 1.6s;  --wob-from: -3deg; --wob-to: 3deg;  --wob-dur: 3.2s; }
+.balloon--17 { width: 80px;  bottom: -120px; left: 40%; --rise-dur: 22s;   --rise-del: 9s;    --sway: 14px;  --sway-dur: 5.2s; --sway-del: 2.4s;  --wob-from: -2deg; --wob-to: 3deg;  --wob-dur: 3.8s; }
+.balloon--18 { width: 85px;  bottom: -100px; left: 91%; --rise-dur: 15s;   --rise-del: 13s;   --sway: -20px; --sway-dur: 3.6s; --sway-del: 0.6s;  --wob-from: -3deg; --wob-to: 5deg;  --wob-dur: 2.8s; }
+
+@keyframes balloonRise {
+  0%   { transform: translateY(0) scale(1);       opacity: 0; }
   5%   { opacity: 1; }
-  90%  { opacity: 0.6; }
-  100% { transform: translateY(-110vh) rotate(8deg); opacity: 0; }
+  85%  { opacity: 0.5; }
+  100% { transform: translateY(-115vh) scale(0.82); opacity: 0; }
+}
+
+@keyframes balloonSway {
+  from { transform: translateX(calc(var(--sway, 20px) * -1)); }
+  to   { transform: translateX(var(--sway, 20px)); }
+}
+
+@keyframes balloonWobble {
+  from { transform: rotate(var(--wob-from, -3deg)); }
+  to   { transform: rotate(var(--wob-to, 5deg)); }
+}
+
+@keyframes balloonShimmer {
+  from { opacity: 0.18; }
+  to   { opacity: 0.38; }
 }
 
 /* Hero Content */
@@ -518,14 +575,14 @@ input, select, textarea {
   font-size: clamp(2.4rem, 8vw, 4.5rem);
   font-weight: 700;
   line-height: 1.15;
-  color: var(--color-champagne-soft);
+  color: var(--color-text-heading);
   margin-bottom: var(--space-md);
-  text-shadow: 0 2px 40px rgba(0,0,0,0.5);
+  text-shadow: none;
 }
 
 .hero-subheadline {
   font-size: clamp(0.95rem, 2.5vw, 1.15rem);
-  color: rgba(245, 230, 204, 0.75);
+  color: var(--color-text-muted);
   font-weight: 300;
   letter-spacing: 0.03em;
   margin-bottom: var(--space-lg);
@@ -600,7 +657,7 @@ input, select, textarea {
 
 .btn--outline {
   background: transparent;
-  color: var(--color-gold-light);
+  color: var(--color-gold-dark);
   border: 1.5px solid var(--color-gold);
 }
 
@@ -644,14 +701,14 @@ input, select, textarea {
 }
 
 .section-title--light {
-  color: var(--color-champagne-soft);
+  color: var(--color-text-heading);
 }
 
 /* ============================================================
    ABOUT SECTION
    ============================================================ */
 .about {
-  background-color: var(--color-black-soft);
+  background-color: var(--color-cream-alt);
   padding: var(--space-xl) 0;
   text-align: center;
 }
@@ -675,7 +732,7 @@ input, select, textarea {
   font-family: var(--font-heading);
   font-style: italic;
   font-size: clamp(1.3rem, 4vw, 2rem);
-  color: var(--color-champagne-soft);
+  color: var(--color-text-heading);
   line-height: 1.4;
   margin-bottom: var(--space-md);
   max-width: 600px;
@@ -685,7 +742,7 @@ input, select, textarea {
 
 .about-description {
   font-size: 1rem;
-  color: rgba(245, 230, 204, 0.7);
+  color: var(--color-text-muted);
   max-width: 540px;
   margin: 0 auto var(--space-lg);
   line-height: 1.8;
@@ -722,8 +779,8 @@ input, select, textarea {
 }
 
 .service-card {
-  background-color: var(--color-gray-dark);
-  border: 1px solid rgba(201, 168, 76, 0.15);
+  background-color: var(--color-cream);
+  border: 1px solid rgba(201, 168, 76, 0.3);
   border-radius: var(--radius-md);
   padding: var(--space-md);
   transition: transform var(--transition-base), border-color var(--transition-base), box-shadow var(--transition-base);
@@ -752,13 +809,13 @@ input, select, textarea {
   font-family: var(--font-heading);
   font-size: 1.15rem;
   font-weight: 600;
-  color: var(--color-champagne);
+  color: var(--color-text-heading);
   margin-bottom: var(--space-xs);
 }
 
 .service-card-desc {
   font-size: 0.9rem;
-  color: rgba(245, 230, 204, 0.65);
+  color: var(--color-text-muted);
   line-height: 1.7;
 }
 
@@ -779,7 +836,7 @@ input, select, textarea {
    GALLERY SECTION
    ============================================================ */
 .gallery {
-  background-color: var(--color-black);
+  background-color: var(--color-cream);
   padding: var(--space-xl) 0;
 }
 
@@ -844,6 +901,28 @@ input, select, textarea {
   object-fit: cover;
 }
 
+.gallery-play-icon {
+  position: relative;
+  z-index: 1;
+  font-size: 1.5rem;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.45);
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  transition: background var(--transition-base), transform var(--transition-base);
+}
+
+.gallery-item:hover .gallery-play-icon,
+.gallery-item:focus-visible .gallery-play-icon {
+  background: rgba(201, 168, 76, 0.85);
+  transform: scale(1.1);
+}
+
 .gallery-cta {
   text-align: center;
   padding-top: var(--space-md);
@@ -851,7 +930,7 @@ input, select, textarea {
 
 .gallery-cta-text {
   font-size: 0.9rem;
-  color: rgba(245, 230, 204, 0.6);
+  color: var(--color-text-muted);
   margin-bottom: var(--space-sm);
   letter-spacing: 0.03em;
 }
@@ -944,7 +1023,7 @@ input, select, textarea {
    CONTACT SECTION
    ============================================================ */
 .contact {
-  background-color: var(--color-black-soft);
+  background-color: var(--color-cream-alt);
   padding: var(--space-xl) 0;
 }
 
@@ -969,7 +1048,7 @@ input, select, textarea {
 .contact-info-title {
   font-family: var(--font-heading);
   font-size: 1.5rem;
-  color: var(--color-champagne-soft);
+  color: var(--color-text-heading);
   margin-bottom: var(--space-md);
   font-weight: 600;
 }
@@ -996,7 +1075,7 @@ input, select, textarea {
 }
 
 .contact-info-link {
-  color: rgba(245, 230, 204, 0.8);
+  color: var(--color-text-primary);
   transition: color var(--transition-fast);
 }
 
@@ -1034,8 +1113,8 @@ input, select, textarea {
 
 /* Contact Form */
 .contact-form-wrapper {
-  background: var(--color-gray-dark);
-  border: 1px solid rgba(201, 168, 76, 0.15);
+  background: var(--color-cream);
+  border: 1px solid rgba(201, 168, 76, 0.35);
   border-radius: var(--radius-lg);
   padding: var(--space-md);
 }
@@ -1058,17 +1137,17 @@ input, select, textarea {
   font-weight: 400;
   text-transform: none;
   letter-spacing: 0;
-  color: rgba(245, 230, 204, 0.5);
+  color: rgba(58, 50, 41, 0.45);
   font-size: 0.75rem;
 }
 
 .form-input {
   width: 100%;
   padding: 12px 16px;
-  background: var(--color-black-soft);
-  border: 1.5px solid rgba(201, 168, 76, 0.2);
+  background: #FFFFFF;
+  border: 1.5px solid rgba(201, 168, 76, 0.35);
   border-radius: var(--radius-sm);
-  color: var(--color-champagne);
+  color: var(--color-text-primary);
   font-size: 0.95rem;
   transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
   appearance: none;
@@ -1076,7 +1155,7 @@ input, select, textarea {
 }
 
 .form-input::placeholder {
-  color: rgba(245, 230, 204, 0.3);
+  color: rgba(58, 50, 41, 0.35);
 }
 
 .form-input:focus {
@@ -1098,8 +1177,8 @@ input, select, textarea {
 }
 
 .form-select option {
-  background-color: var(--color-gray-dark);
-  color: var(--color-champagne);
+  background-color: #FFFFFF;
+  color: var(--color-text-primary);
 }
 
 .form-textarea {
@@ -1206,8 +1285,8 @@ input, select, textarea {
    FOOTER
    ============================================================ */
 .site-footer {
-  background-color: var(--color-black);
-  border-top: 1px solid rgba(201, 168, 76, 0.15);
+  background-color: var(--color-cream-deep);
+  border-top: 1px solid rgba(201, 168, 76, 0.3);
   padding: var(--space-lg) 0;
 }
 
@@ -1235,7 +1314,7 @@ input, select, textarea {
 .footer-logo-text {
   font-family: var(--font-heading);
   font-size: 1rem;
-  color: var(--color-champagne);
+  color: var(--color-text-heading);
   font-weight: 600;
 }
 
@@ -1250,7 +1329,7 @@ input, select, textarea {
   font-size: 0.8rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: rgba(245, 230, 204, 0.5);
+  color: rgba(58, 50, 41, 0.55);
   transition: color var(--transition-fast);
 }
 
@@ -1266,7 +1345,7 @@ input, select, textarea {
 
 .footer-copy {
   font-size: 0.78rem;
-  color: rgba(245, 230, 204, 0.3);
+  color: rgba(58, 50, 41, 0.4);
   letter-spacing: 0.03em;
 }
 
@@ -1287,7 +1366,7 @@ input, select, textarea {
   .footer-copy {
     width: 100%;
     text-align: center;
-    border-top: 1px solid rgba(201, 168, 76, 0.08);
+    border-top: 1px solid rgba(201, 168, 76, 0.2);
     padding-top: var(--space-sm);
     margin-top: var(--space-xs);
   }
