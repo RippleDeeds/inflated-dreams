@@ -488,11 +488,24 @@ input, select, textarea {
   height: 100%;
 }
 
-.balloon--1 { width: 50px; bottom: -80px; left: 8%; animation-duration: 14s; animation-delay: 0s; }
-.balloon--2 { width: 38px; bottom: -80px; left: 25%; animation-duration: 18s; animation-delay: 3s; }
-.balloon--3 { width: 60px; bottom: -80px; left: 55%; animation-duration: 12s; animation-delay: 6s; }
-.balloon--4 { width: 44px; bottom: -80px; left: 72%; animation-duration: 16s; animation-delay: 1.5s; }
-.balloon--5 { width: 32px; bottom: -80px; left: 88%; animation-duration: 20s; animation-delay: 9s; }
+.balloon--1  { width: 50px; bottom: -80px;  left: 8%;  animation-duration: 14s;   animation-delay: 0s; }
+.balloon--2  { width: 38px; bottom: -80px;  left: 25%; animation-duration: 18s;   animation-delay: 3s; }
+.balloon--3  { width: 60px; bottom: -80px;  left: 55%; animation-duration: 12s;   animation-delay: 6s; }
+.balloon--4  { width: 44px; bottom: -80px;  left: 72%; animation-duration: 16s;   animation-delay: 1.5s; }
+.balloon--5  { width: 32px; bottom: -80px;  left: 88%; animation-duration: 20s;   animation-delay: 9s; }
+.balloon--6  { width: 42px; bottom: -80px;  left: 3%;  animation-duration: 15s;   animation-delay: 2.5s; }
+.balloon--7  { width: 36px; bottom: -80px;  left: 35%; animation-duration: 21s;   animation-delay: 7.5s; }
+.balloon--8  { width: 88px; bottom: -100px; left: 62%; animation-duration: 17s;   animation-delay: 4s; }
+.balloon--9  { width: 46px; bottom: -80px;  left: 79%; animation-duration: 13.5s; animation-delay: 11s; }
+.balloon--10 { width: 40px; bottom: -80px;  left: 45%; animation-duration: 24s;   animation-delay: 5.5s; }
+.balloon--11 { width: 50px; bottom: -80px;  left: 15%; animation-duration: 16s;   animation-delay: 3.5s; }
+.balloon--12 { width: 75px; bottom: -90px;  left: 30%; animation-duration: 19s;   animation-delay: 8s; }
+.balloon--13 { width: 30px; bottom: -90px;  left: 58%; animation-duration: 14s;   animation-delay: 12s; }
+.balloon--14 { width: 115px; bottom: -100px; left: 67%; animation-duration: 22s;  animation-delay: 6s; }
+.balloon--15 { width: 48px; bottom: -80px;  left: 18%; animation-duration: 11s;   animation-delay: 1s; }
+.balloon--16 { width: 44px; bottom: -80px;  left: 83%; animation-duration: 17s;   animation-delay: 4s; }
+.balloon--17 { width: 80px; bottom: -120px; left: 40%; animation-duration: 20s;   animation-delay: 9s; }
+.balloon--18 { width: 85px; bottom: -100px; left: 91%; animation-duration: 15s;   animation-delay: 13s; }
 
 @keyframes floatUp {
   0%   { transform: translateY(0) rotate(0deg);  opacity: 0; }
