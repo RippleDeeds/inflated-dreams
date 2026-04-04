@@ -48,7 +48,7 @@
   });
 
   /* ================================================================
-     PARALLAX — hero glow layer on scroll
+     PARALLAX — hero glow layer on scroll + cursor balloon parallax
      ================================================================ */
   const parallaxLayer = $('.hero-parallax-layer');
 
@@ -56,6 +56,42 @@
     window.addEventListener('scroll', () => {
       parallaxLayer.style.transform = `translateY(${window.scrollY * 0.35}px)`;
     }, { passive: true });
+  }
+
+  const balloonsContainer = $('.balloons-container');
+
+  if (balloonsContainer && !prefersReducedMotion) {
+    let targetX = 0;
+    let targetY = 0;
+    let currentX = 0;
+    let currentY = 0;
+    let ticking = false;
+
+    const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+
+    if (!isTouch) {
+      window.addEventListener('mousemove', e => {
+        const cx = window.innerWidth / 2;
+        const cy = window.innerHeight / 2;
+        targetX = ((e.clientX - cx) / cx) * -12;
+        targetY = ((e.clientY - cy) / cy) * -8;
+
+        if (!ticking) {
+          ticking = true;
+          requestAnimationFrame(function lerp() {
+            currentX += (targetX - currentX) * 0.08;
+            currentY += (targetY - currentY) * 0.08;
+            balloonsContainer.style.transform = `translate(${currentX}px, ${currentY}px)`;
+
+            if (Math.abs(targetX - currentX) > 0.1 || Math.abs(targetY - currentY) > 0.1) {
+              requestAnimationFrame(lerp);
+            } else {
+              ticking = false;
+            }
+          });
+        }
+      }, { passive: true });
+    }
   }
 
   /* ================================================================

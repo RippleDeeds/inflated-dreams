@@ -113,7 +113,7 @@
   });
 
   /* ================================================================
-     PARALLAX — hero glow layer on scroll
+     PARALLAX — hero glow layer on scroll + cursor balloon parallax
      ================================================================ */
   const parallaxLayer = $('.hero-parallax-layer');
 
@@ -122,6 +122,42 @@
       const scrollY = window.scrollY;
       parallaxLayer.style.transform = `translateY(${scrollY * 0.35}px)`;
     }, { passive: true });
+  }
+
+  const balloonsContainer = $('.balloons-container');
+
+  if (balloonsContainer && !prefersReducedMotion) {
+    let targetX = 0;
+    let targetY = 0;
+    let currentX = 0;
+    let currentY = 0;
+    let ticking = false;
+
+    const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+
+    if (!isTouch) {
+      window.addEventListener('mousemove', e => {
+        const cx = window.innerWidth / 2;
+        const cy = window.innerHeight / 2;
+        targetX = ((e.clientX - cx) / cx) * -12;
+        targetY = ((e.clientY - cy) / cy) * -8;
+
+        if (!ticking) {
+          ticking = true;
+          requestAnimationFrame(function lerp() {
+            currentX += (targetX - currentX) * 0.08;
+            currentY += (targetY - currentY) * 0.08;
+            balloonsContainer.style.transform = `translate(${currentX}px, ${currentY}px)`;
+
+            if (Math.abs(targetX - currentX) > 0.1 || Math.abs(targetY - currentY) > 0.1) {
+              requestAnimationFrame(lerp);
+            } else {
+              ticking = false;
+            }
+          });
+        }
+      }, { passive: true });
+    }
   }
 
   /* ================================================================
@@ -157,6 +193,7 @@
     index: i,
     type: item.dataset.type || 'image',
     label: item.getAttribute('aria-label') || `Gallery item ${i + 1}`,
+    src: item.dataset.src || '',
   }));
 
   function openLightbox(index) {
@@ -166,16 +203,19 @@
     if (item.type === 'video') {
       const videoEl = document.createElement('video');
       videoEl.controls = true;
-      videoEl.autoplay = false;
+      videoEl.autoplay = !prefersReducedMotion;
       videoEl.setAttribute('aria-label', item.label);
-      const placeholder = document.createElement('div');
-      placeholder.style.cssText = 'width:300px;height:200px;display:flex;align-items:center;justify-content:center;color:rgba(245,230,204,0.5);font-family:var(--font-heading);font-size:1rem;text-align:center;';
-      placeholder.textContent = 'Video coming soon — follow us on Instagram & TikTok!';
-      lightboxContent.appendChild(placeholder);
+      videoEl.style.cssText = 'max-width:min(90vw,900px);max-height:80vh;border-radius:8px;display:block;background:#000;';
+      const source = document.createElement('source');
+      source.src = item.src;
+      source.type = 'video/mp4';
+      videoEl.appendChild(source);
+      lightboxContent.appendChild(videoEl);
     } else {
-      const imgEl = document.createElement('div');
-      imgEl.style.cssText = 'width:min(80vw,500px);height:min(60vh,400px);background:linear-gradient(135deg,#C9A84C,#C7956C);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1rem;color:rgba(10,10,10,0.6);font-family:var(--font-heading);text-align:center;padding:24px;';
-      imgEl.textContent = 'Your beautiful photo will appear here';
+      const imgEl = document.createElement('img');
+      imgEl.src = item.src;
+      imgEl.alt = item.label;
+      imgEl.style.cssText = 'max-width:min(90vw,900px);max-height:80vh;object-fit:contain;border-radius:8px;display:block;';
       lightboxContent.appendChild(imgEl);
     }
 
@@ -190,6 +230,8 @@
   }
 
   function closeLightbox() {
+    const activeVideo = lightboxContent.querySelector('video');
+    if (activeVideo) activeVideo.pause();
     lightbox.style.opacity = '0';
     setTimeout(() => {
       lightbox.setAttribute('hidden', '');

@@ -148,8 +148,14 @@ input, select, textarea {
     transform: none;
     transition: none;
   }
-  .balloon {
+  .balloon,
+  .balloon-sway,
+  .balloon-body,
+  .balloon-shimmer {
     animation: none !important;
+  }
+  .balloons-container {
+    transition: none !important;
   }
   .hero-parallax-layer {
     transform: none !important;
@@ -469,18 +475,28 @@ input, select, textarea {
   background: radial-gradient(circle, var(--color-rose-gold) 0%, transparent 70%);
 }
 
-/* Floating Balloons */
+/* Floating Balloons — layered animation system */
 .balloons-container {
   position: absolute;
   inset: 0;
   z-index: 1;
   pointer-events: none;
   overflow: hidden;
+  will-change: transform;
+  transition: transform 0.15s ease-out;
 }
 
 .balloon {
   position: absolute;
-  animation: floatUp linear infinite;
+  animation: balloonRise var(--rise-dur, 16s) cubic-bezier(0.25, 0.1, 0.25, 1) var(--rise-del, 0s) infinite;
+}
+
+.balloon-sway {
+  animation: balloonSway var(--sway-dur, 4s) ease-in-out var(--sway-del, 0s) infinite alternate;
+}
+
+.balloon-body {
+  animation: balloonWobble var(--wob-dur, 3s) ease-in-out infinite alternate;
 }
 
 .balloon svg {
@@ -488,30 +504,51 @@ input, select, textarea {
   height: 100%;
 }
 
-.balloon--1  { width: 50px; bottom: -80px;  left: 8%;  animation-duration: 14s;   animation-delay: 0s; }
-.balloon--2  { width: 38px; bottom: -80px;  left: 25%; animation-duration: 18s;   animation-delay: 3s; }
-.balloon--3  { width: 60px; bottom: -80px;  left: 55%; animation-duration: 12s;   animation-delay: 6s; }
-.balloon--4  { width: 44px; bottom: -80px;  left: 72%; animation-duration: 16s;   animation-delay: 1.5s; }
-.balloon--5  { width: 32px; bottom: -80px;  left: 88%; animation-duration: 20s;   animation-delay: 9s; }
-.balloon--6  { width: 42px; bottom: -80px;  left: 3%;  animation-duration: 15s;   animation-delay: 2.5s; }
-.balloon--7  { width: 36px; bottom: -80px;  left: 35%; animation-duration: 21s;   animation-delay: 7.5s; }
-.balloon--8  { width: 88px; bottom: -100px; left: 62%; animation-duration: 17s;   animation-delay: 4s; }
-.balloon--9  { width: 46px; bottom: -80px;  left: 79%; animation-duration: 13.5s; animation-delay: 11s; }
-.balloon--10 { width: 40px; bottom: -80px;  left: 45%; animation-duration: 24s;   animation-delay: 5.5s; }
-.balloon--11 { width: 50px; bottom: -80px;  left: 15%; animation-duration: 16s;   animation-delay: 3.5s; }
-.balloon--12 { width: 75px; bottom: -90px;  left: 30%; animation-duration: 19s;   animation-delay: 8s; }
-.balloon--13 { width: 30px; bottom: -90px;  left: 58%; animation-duration: 14s;   animation-delay: 12s; }
-.balloon--14 { width: 115px; bottom: -100px; left: 67%; animation-duration: 22s;  animation-delay: 6s; }
-.balloon--15 { width: 48px; bottom: -80px;  left: 18%; animation-duration: 11s;   animation-delay: 1s; }
-.balloon--16 { width: 44px; bottom: -80px;  left: 83%; animation-duration: 17s;   animation-delay: 4s; }
-.balloon--17 { width: 80px; bottom: -120px; left: 40%; animation-duration: 20s;   animation-delay: 9s; }
-.balloon--18 { width: 85px; bottom: -100px; left: 91%; animation-duration: 15s;   animation-delay: 13s; }
+.balloon--far  { filter: blur(1.5px); }
 
-@keyframes floatUp {
-  0%   { transform: translateY(0) rotate(0deg);  opacity: 0; }
+.balloon-shimmer {
+  animation: balloonShimmer var(--shim-dur, 5s) ease-in-out infinite alternate;
+}
+
+.balloon--1  { width: 50px;  bottom: -80px;  left: 8%;  --rise-dur: 14s;   --rise-del: 0s;    --sway: 20px;  --sway-dur: 3.5s; --sway-del: 0.2s;  --wob-from: -3deg; --wob-to: 4deg;  --wob-dur: 2.8s; }
+.balloon--2  { width: 38px;  bottom: -80px;  left: 25%; --rise-dur: 18s;   --rise-del: 3s;    --sway: -15px; --sway-dur: 4.2s; --sway-del: 1s;    --wob-from: -2deg; --wob-to: 5deg;  --wob-dur: 3.2s; }
+.balloon--3  { width: 60px;  bottom: -80px;  left: 55%; --rise-dur: 12s;   --rise-del: 6s;    --sway: 28px;  --sway-dur: 3.8s; --sway-del: 0.5s;  --wob-from: -4deg; --wob-to: 3deg;  --wob-dur: 2.5s; }
+.balloon--4  { width: 44px;  bottom: -80px;  left: 72%; --rise-dur: 16s;   --rise-del: 1.5s;  --sway: -22px; --sway-dur: 5s;   --sway-del: 1.8s;  --wob-from: -2deg; --wob-to: 6deg;  --wob-dur: 3.5s; }
+.balloon--5  { width: 32px;  bottom: -80px;  left: 88%; --rise-dur: 22s;   --rise-del: 9s;    --sway: 12px;  --sway-dur: 6s;   --sway-del: 2s;    --wob-from: -1deg; --wob-to: 3deg;  --wob-dur: 4s; }
+.balloon--6  { width: 42px;  bottom: -80px;  left: 3%;  --rise-dur: 15s;   --rise-del: 2.5s;  --sway: -18px; --sway-dur: 3.3s; --sway-del: 0.8s;  --wob-from: -3deg; --wob-to: 5deg;  --wob-dur: 2.6s; }
+.balloon--7  { width: 36px;  bottom: -80px;  left: 35%; --rise-dur: 23s;   --rise-del: 7.5s;  --sway: 10px;  --sway-dur: 5.5s; --sway-del: 2.5s;  --wob-from: -2deg; --wob-to: 2deg;  --wob-dur: 4.2s; }
+.balloon--8  { width: 88px;  bottom: -100px; left: 62%; --rise-dur: 17s;   --rise-del: 4s;    --sway: -25px; --sway-dur: 4.5s; --sway-del: 1.2s;  --wob-from: -2deg; --wob-to: 4deg;  --wob-dur: 3s; }
+.balloon--9  { width: 46px;  bottom: -80px;  left: 79%; --rise-dur: 13.5s; --rise-del: 11s;   --sway: 22px;  --sway-dur: 3.2s; --sway-del: 0.4s;  --wob-from: -4deg; --wob-to: 3deg;  --wob-dur: 2.4s; }
+.balloon--10 { width: 40px;  bottom: -80px;  left: 45%; --rise-dur: 26s;   --rise-del: 5.5s;  --sway: -8px;  --sway-dur: 6.5s; --sway-del: 3s;    --wob-from: -1deg; --wob-to: 2deg;  --wob-dur: 4.5s; }
+.balloon--11 { width: 50px;  bottom: -80px;  left: 15%; --rise-dur: 16s;   --rise-del: 3.5s;  --sway: 16px;  --sway-dur: 4s;   --sway-del: 1.5s;  --wob-from: -3deg; --wob-to: 4deg;  --wob-dur: 3s; }
+.balloon--12 { width: 75px;  bottom: -90px;  left: 30%; --rise-dur: 19s;   --rise-del: 8s;    --sway: -20px; --sway-dur: 4.8s; --sway-del: 2.2s;  --wob-from: -2deg; --wob-to: 5deg;  --wob-dur: 3.4s; }
+.balloon--13 { width: 30px;  bottom: -90px;  left: 58%; --rise-dur: 14s;   --rise-del: 12s;   --sway: 30px;  --sway-dur: 3s;   --sway-del: 0.3s;  --wob-from: -5deg; --wob-to: 4deg;  --wob-dur: 2.2s; }
+.balloon--14 { width: 115px; bottom: -100px; left: 67%; --rise-dur: 24s;   --rise-del: 6s;    --sway: -12px; --sway-dur: 5.8s; --sway-del: 2.8s;  --wob-from: -1deg; --wob-to: 3deg;  --wob-dur: 4s; }
+.balloon--15 { width: 48px;  bottom: -80px;  left: 18%; --rise-dur: 11s;   --rise-del: 1s;    --sway: 24px;  --sway-dur: 2.8s; --sway-del: 0.1s;  --wob-from: -4deg; --wob-to: 6deg;  --wob-dur: 2s; }
+.balloon--16 { width: 44px;  bottom: -80px;  left: 83%; --rise-dur: 17s;   --rise-del: 4s;    --sway: -16px; --sway-dur: 4.3s; --sway-del: 1.6s;  --wob-from: -3deg; --wob-to: 3deg;  --wob-dur: 3.2s; }
+.balloon--17 { width: 80px;  bottom: -120px; left: 40%; --rise-dur: 22s;   --rise-del: 9s;    --sway: 14px;  --sway-dur: 5.2s; --sway-del: 2.4s;  --wob-from: -2deg; --wob-to: 3deg;  --wob-dur: 3.8s; }
+.balloon--18 { width: 85px;  bottom: -100px; left: 91%; --rise-dur: 15s;   --rise-del: 13s;   --sway: -20px; --sway-dur: 3.6s; --sway-del: 0.6s;  --wob-from: -3deg; --wob-to: 5deg;  --wob-dur: 2.8s; }
+
+@keyframes balloonRise {
+  0%   { transform: translateY(0) scale(1);       opacity: 0; }
   5%   { opacity: 1; }
-  90%  { opacity: 0.6; }
-  100% { transform: translateY(-110vh) rotate(8deg); opacity: 0; }
+  85%  { opacity: 0.5; }
+  100% { transform: translateY(-115vh) scale(0.82); opacity: 0; }
+}
+
+@keyframes balloonSway {
+  from { transform: translateX(calc(var(--sway, 20px) * -1)); }
+  to   { transform: translateX(var(--sway, 20px)); }
+}
+
+@keyframes balloonWobble {
+  from { transform: rotate(var(--wob-from, -3deg)); }
+  to   { transform: rotate(var(--wob-to, 5deg)); }
+}
+
+@keyframes balloonShimmer {
+  from { opacity: 0.18; }
+  to   { opacity: 0.38; }
 }
 
 /* Hero Content */
@@ -862,6 +899,28 @@ input, select, textarea {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.gallery-play-icon {
+  position: relative;
+  z-index: 1;
+  font-size: 1.5rem;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.45);
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  transition: background var(--transition-base), transform var(--transition-base);
+}
+
+.gallery-item:hover .gallery-play-icon,
+.gallery-item:focus-visible .gallery-play-icon {
+  background: rgba(201, 168, 76, 0.85);
+  transform: scale(1.1);
 }
 
 .gallery-cta {
