@@ -29,7 +29,7 @@
     </div>
     <p class="flyer-screen-hint">
       <i class="fa-solid fa-circle-info"></i>
-      Print dialog: <strong>A4 · Landscape · No margins · Background graphics ON</strong>
+      Print dialog: <strong>Letter · Landscape · No margins · Background graphics ON</strong>
     </p>
   </div>
 
@@ -72,7 +72,7 @@
         <div class="flyer-panel-inner">
 
           <div class="flyer-logo" aria-hidden="true">
-            <img src="images/logo-mark.jpg" alt="" class="flyer-logo-img" />
+            <img src="images/logo.png" alt="" class="flyer-logo-img" />
           </div>
 
           <p class="flyer-brand-name">Inflated Dreams</p>
@@ -276,10 +276,10 @@
       function scalePreview() {
         var wrapper = document.querySelector('.flyer-preview-wrapper');
         if (!wrapper) return;
-        var sheetW = 297 * (96 / 25.4);
+        var sheetW = 279.4 * (96 / 25.4);
         var available = window.innerWidth - 48;
         var scale = available < sheetW ? available / sheetW : 1;
-        var sheetH = 210 * (96 / 25.4);
+        var sheetH = 215.9 * (96 / 25.4);
         wrapper.style.transform = 'scale(' + scale + ')';
         wrapper.style.transformOrigin = 'top center';
         wrapper.style.marginBottom = ((sheetH * scale) - sheetH) + 'px';

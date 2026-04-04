@@ -1,10 +1,10 @@
 /* ============================================================
    INFLATED DREAMS — Print Flyer Stylesheet
-   2-up A4 Landscape (two A5 portrait panels per sheet)
+   2-up US Letter Landscape (two half-letter portrait panels per sheet)
    Dark edition: flyer.html
    Light edition: flyer-light.html (.flyer-panel--light modifier)
 
-   Print: A4 · Landscape · No margins · Background graphics ON
+   Print: Letter · Landscape · No margins · Background graphics ON
    ============================================================ */
 
 /* ============================================================
@@ -122,15 +122,15 @@
 }
 
 /* ============================================================
-   SHEET: A4 LANDSCAPE CONTAINER
+   SHEET: US LETTER LANDSCAPE CONTAINER
    ============================================================ */
 .flyer-preview-wrapper {
   box-shadow: 0 16px 60px rgba(0, 0, 0, 0.4), 0 4px 12px rgba(0, 0, 0, 0.25);
 }
 
 .flyer-sheet {
-  width: 297mm;
-  height: 210mm;
+  width: 279.4mm;
+  height: 215.9mm;
   display: flex;
   flex-direction: row;
   background: #fff;
@@ -142,7 +142,7 @@
    ============================================================ */
 .flyer-cut-guide {
   width: 1px;
-  height: 210mm;
+  height: 215.9mm;
   flex-shrink: 0;
   background: repeating-linear-gradient(
     to bottom,
@@ -169,11 +169,11 @@
 }
 
 /* ============================================================
-   PANEL: A5 PORTRAIT (148.5mm × 210mm)
+   PANEL: HALF LETTER PORTRAIT (139.7mm × 215.9mm)
    ============================================================ */
 .flyer-panel {
-  width: 148.5mm;
-  height: 210mm;
+  width: 139.7mm;
+  height: 215.9mm;
   flex-shrink: 0;
   position: relative;
   overflow: hidden;
@@ -582,7 +582,7 @@
    ============================================================ */
 @media print {
   @page {
-    size: A4 landscape;
+    size: letter landscape;
     margin: 0;
   }
 
@@ -612,15 +612,15 @@
   }
 
   .flyer-sheet {
-    width: 297mm !important;
-    height: 210mm !important;
+    width: 279.4mm !important;
+    height: 215.9mm !important;
     page-break-after: avoid;
     break-after: avoid;
   }
 
   .flyer-panel {
-    width: 148.5mm !important;
-    height: 210mm !important;
+    width: 139.7mm !important;
+    height: 215.9mm !important;
   }
 
   .flyer-cut-guide {
