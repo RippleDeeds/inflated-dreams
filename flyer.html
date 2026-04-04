@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inflated Dreams — Print Flyer (Dark)</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/flyer.css" />
+</head>
+<body class="flyer-body">
+
+  <div class="flyer-screen-ui" aria-hidden="true">
+    <p class="flyer-screen-title">Dark Edition — Print Flyer</p>
+    <div class="flyer-screen-actions">
+      <button class="flyer-print-btn" onclick="window.print()">
+        <i class="fa-solid fa-print"></i>
+        Print / Save as PDF
+      </button>
+      <a href="flyer-light.html" class="flyer-switch-btn">
+        <i class="fa-solid fa-sun"></i>
+        Switch to Light Edition
+      </a>
+    </div>
+    <p class="flyer-screen-hint">
+      <i class="fa-solid fa-circle-info"></i>
+      Print dialog: <strong>A4 · Landscape · No margins · Background graphics ON</strong>
+    </p>
+  </div>
+
+  <div class="flyer-preview-wrapper">
+    <div class="flyer-sheet">
+
+      <!-- ==================== LEFT PANEL ==================== -->
+      <article class="flyer-panel" aria-label="Inflated Dreams promotional flyer">
+
+        <div class="flyer-bg-glow flyer-bg-glow--gold" aria-hidden="true"></div>
+        <div class="flyer-bg-glow flyer-bg-glow--rose" aria-hidden="true"></div>
+
+        <div class="flyer-balloons" aria-hidden="true">
+          <svg class="flyer-balloon flyer-balloon--a" viewBox="0 0 60 80" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="30" cy="30" rx="26" ry="30" fill="url(#fd-b1)" opacity="0.7"/>
+            <path d="M30 60 Q32 68 30 76" stroke="#C9A84C" stroke-width="1.5" fill="none"/>
+            <circle cx="30" cy="76" r="2" fill="#C9A84C" opacity="0.5"/>
+            <defs><radialGradient id="fd-b1" cx="35%" cy="30%"><stop offset="0%" stop-color="#E8C97A"/><stop offset="100%" stop-color="#C9A84C"/></radialGradient></defs>
+          </svg>
+          <svg class="flyer-balloon flyer-balloon--b" viewBox="0 0 60 80" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="30" cy="30" rx="26" ry="30" fill="url(#fd-b2)" opacity="0.55"/>
+            <path d="M30 60 Q32 68 30 76" stroke="#C7956C" stroke-width="1.5" fill="none"/>
+            <circle cx="30" cy="76" r="2" fill="#C7956C" opacity="0.45"/>
+            <defs><radialGradient id="fd-b2" cx="35%" cy="30%"><stop offset="0%" stop-color="#DDB08A"/><stop offset="100%" stop-color="#C7956C"/></radialGradient></defs>
+          </svg>
+          <svg class="flyer-balloon flyer-balloon--c" viewBox="0 0 60 80" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="30" cy="30" rx="26" ry="30" fill="url(#fd-b3)" opacity="0.4"/>
+            <path d="M30 60 Q32 68 30 76" stroke="#E8C97A" stroke-width="1.5" fill="none"/>
+            <circle cx="30" cy="76" r="2" fill="#E8C97A" opacity="0.35"/>
+            <defs><radialGradient id="fd-b3" cx="35%" cy="30%"><stop offset="0%" stop-color="#FAF0DC"/><stop offset="100%" stop-color="#E8C97A"/></radialGradient></defs>
+          </svg>
+          <svg class="flyer-balloon flyer-balloon--d" viewBox="0 0 60 80" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="30" cy="30" rx="26" ry="30" fill="url(#fd-b4)" opacity="0.35"/>
+            <path d="M30 60 Q32 68 30 76" stroke="#C9A84C" stroke-width="1.5" fill="none"/>
+            <circle cx="30" cy="76" r="2" fill="#C9A84C" opacity="0.3"/>
+            <defs><radialGradient id="fd-b4" cx="35%" cy="30%"><stop offset="0%" stop-color="#C7956C"/><stop offset="100%" stop-color="#9A6B4E"/></radialGradient></defs>
+          </svg>
+        </div>
+
+        <div class="flyer-panel-inner">
+
+          <div class="flyer-logo" aria-hidden="true">
+            <img src="images/logo-mark.jpg" alt="" class="flyer-logo-img" />
+          </div>
+
+          <p class="flyer-brand-name">Inflated Dreams</p>
+          <p class="flyer-brand-sub">Luxury Balloon Artistry</p>
+
+          <div class="flyer-ornament" aria-hidden="true">
+            <span class="flyer-ornament-diamond">✦</span>
+          </div>
+
+          <div class="flyer-headline-block">
+            <h1 class="flyer-headline">Where Every Event<br/>Becomes <em>the Dream</em></h1>
+            <p class="flyer-tagline">Bespoke balloon installations for<br/>life's most extraordinary moments</p>
+          </div>
+
+          <div class="flyer-ornament" aria-hidden="true">
+            <span class="flyer-ornament-diamond">✦</span>
+          </div>
+
+          <ul class="flyer-services" role="list" aria-label="Our services">
+            <li class="flyer-service-item">
+              <i class="fa-solid fa-cake-candles" aria-hidden="true"></i>
+              <span>Birthday Parties</span>
+            </li>
+            <li class="flyer-service-item">
+              <i class="fa-solid fa-heart" aria-hidden="true"></i>
+              <span>Weddings</span>
+            </li>
+            <li class="flyer-service-item">
+              <i class="fa-solid fa-baby" aria-hidden="true"></i>
+              <span>Baby Showers</span>
+            </li>
+            <li class="flyer-service-item">
+              <i class="fa-solid fa-briefcase" aria-hidden="true"></i>
+              <span>Corporate Events</span>
+            </li>
+            <li class="flyer-service-item">
+              <i class="fa-solid fa-archway" aria-hidden="true"></i>
+              <span>Balloon Arches</span>
+            </li>
+            <li class="flyer-service-item">
+              <i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i>
+              <span>Garlands &amp; More</span>
+            </li>
+          </ul>
+
+          <div class="flyer-ornament" aria-hidden="true">
+            <span class="flyer-ornament-diamond">✦</span>
+          </div>
+
+          <div class="flyer-qr-section">
+            <p class="flyer-qr-scan-label">Scan to Book Your Event</p>
+            <div class="flyer-qr-frame">
+              <img src="images/QR-Code.png" alt="QR code — scan to book your balloon decoration event with Inflated Dreams" class="flyer-qr-img" />
+            </div>
+            <p class="flyer-qr-subtitle"><em>Your dream event awaits</em></p>
+          </div>
+
+          <footer class="flyer-footer">
+            <div class="flyer-footer-rule" aria-hidden="true"></div>
+            <div class="flyer-footer-contacts">
+              <span class="flyer-contact-item">
+                <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+                @inflateddreamssss9
+              </span>
+              <span class="flyer-contact-sep" aria-hidden="true">·</span>
+              <span class="flyer-contact-item">
+                <i class="fa-brands fa-tiktok" aria-hidden="true"></i>
+                @inflateddreams6
+              </span>
+            </div>
+            <p class="flyer-contact-email">inflateddreamsdecor@gmail.com</p>
+          </footer>
+
+        </div>
+      </article>
+
+      <!-- ==================== CUT GUIDE ==================== -->
+      <div class="flyer-cut-guide" aria-hidden="true">
+        <span class="flyer-cut-icon">✂</span>
+      </div>
+
+      <!-- ==================== RIGHT PANEL (duplicate) ==================== -->
+      <article class="flyer-panel" aria-hidden="true">
+
+        <div class="flyer-bg-glow flyer-bg-glow--gold"></div>
+        <div class="flyer-bg-glow flyer-bg-glow--rose"></div>
+
+        <div class="flyer-balloons">
+          <svg class="flyer-balloon flyer-balloon--a" viewBox="0 0 60 80" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="30" cy="30" rx="26" ry="30" fill="url(#fd-r1)" opacity="0.7"/>
+            <path d="M30 60 Q32 68 30 76" stroke="#C9A84C" stroke-width="1.5" fill="none"/>
+            <circle cx="30" cy="76" r="2" fill="#C9A84C" opacity="0.5"/>
+            <defs><radialGradient id="fd-r1" cx="35%" cy="30%"><stop offset="0%" stop-color="#E8C97A"/><stop offset="100%" stop-color="#C9A84C"/></radialGradient></defs>
+          </svg>
+          <svg class="flyer-balloon flyer-balloon--b" viewBox="0 0 60 80" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="30" cy="30" rx="26" ry="30" fill="url(#fd-r2)" opacity="0.55"/>
+            <path d="M30 60 Q32 68 30 76" stroke="#C7956C" stroke-width="1.5" fill="none"/>
+            <circle cx="30" cy="76" r="2" fill="#C7956C" opacity="0.45"/>
+            <defs><radialGradient id="fd-r2" cx="35%" cy="30%"><stop offset="0%" stop-color="#DDB08A"/><stop offset="100%" stop-color="#C7956C"/></radialGradient></defs>
+          </svg>
+          <svg class="flyer-balloon flyer-balloon--c" viewBox="0 0 60 80" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="30" cy="30" rx="26" ry="30" fill="url(#fd-r3)" opacity="0.4"/>
+            <path d="M30 60 Q32 68 30 76" stroke="#E8C97A" stroke-width="1.5" fill="none"/>
+            <circle cx="30" cy="76" r="2" fill="#E8C97A" opacity="0.35"/>
+            <defs><radialGradient id="fd-r3" cx="35%" cy="30%"><stop offset="0%" stop-color="#FAF0DC"/><stop offset="100%" stop-color="#E8C97A"/></radialGradient></defs>
+          </svg>
+          <svg class="flyer-balloon flyer-balloon--d" viewBox="0 0 60 80" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="30" cy="30" rx="26" ry="30" fill="url(#fd-r4)" opacity="0.35"/>
+            <path d="M30 60 Q32 68 30 76" stroke="#C9A84C" stroke-width="1.5" fill="none"/>
+            <circle cx="30" cy="76" r="2" fill="#C9A84C" opacity="0.3"/>
+            <defs><radialGradient id="fd-r4" cx="35%" cy="30%"><stop offset="0%" stop-color="#C7956C"/><stop offset="100%" stop-color="#9A6B4E"/></radialGradient></defs>
+          </svg>
+        </div>
+
+        <div class="flyer-panel-inner">
+
+          <div class="flyer-logo">
+            <img src="images/logo.png" alt="" class="flyer-logo-img" />
+          </div>
+
+          <p class="flyer-brand-name">Inflated Dreams</p>
+          <p class="flyer-brand-sub">Luxury Balloon Artistry</p>
+
+          <div class="flyer-ornament">
+            <span class="flyer-ornament-diamond">✦</span>
+          </div>
+
+          <div class="flyer-headline-block">
+            <h2 class="flyer-headline">Where Every Event<br/>Becomes <em>the Dream</em></h2>
+            <p class="flyer-tagline">Bespoke balloon installations for<br/>life's most extraordinary moments</p>
+          </div>
+
+          <div class="flyer-ornament">
+            <span class="flyer-ornament-diamond">✦</span>
+          </div>
+
+          <ul class="flyer-services" role="list">
+            <li class="flyer-service-item">
+              <i class="fa-solid fa-cake-candles"></i>
+              <span>Birthday Parties</span>
+            </li>
+            <li class="flyer-service-item">
+              <i class="fa-solid fa-heart"></i>
+              <span>Weddings</span>
+            </li>
+            <li class="flyer-service-item">
+              <i class="fa-solid fa-baby"></i>
+              <span>Baby Showers</span>
+            </li>
+            <li class="flyer-service-item">
+              <i class="fa-solid fa-briefcase"></i>
+              <span>Corporate Events</span>
+            </li>
+            <li class="flyer-service-item">
+              <i class="fa-solid fa-archway"></i>
+              <span>Balloon Arches</span>
+            </li>
+            <li class="flyer-service-item">
+              <i class="fa-solid fa-wand-magic-sparkles"></i>
+              <span>Garlands &amp; More</span>
+            </li>
+          </ul>
+
+          <div class="flyer-ornament">
+            <span class="flyer-ornament-diamond">✦</span>
+          </div>
+
+          <div class="flyer-qr-section">
+            <p class="flyer-qr-scan-label">Scan to Book Your Event</p>
+            <div class="flyer-qr-frame">
+              <img src="images/QR-Code.png" alt="" class="flyer-qr-img" />
+            </div>
+            <p class="flyer-qr-subtitle"><em>Your dream event awaits</em></p>
+          </div>
+
+          <footer class="flyer-footer">
+            <div class="flyer-footer-rule"></div>
+            <div class="flyer-footer-contacts">
+              <span class="flyer-contact-item">
+                <i class="fa-brands fa-instagram"></i>
+                @inflateddreamssss9
+              </span>
+              <span class="flyer-contact-sep">·</span>
+              <span class="flyer-contact-item">
+                <i class="fa-brands fa-tiktok"></i>
+                @inflateddreams6
+              </span>
+            </div>
+            <p class="flyer-contact-email">inflateddreamsdecor@gmail.com</p>
+          </footer>
+
+        </div>
+      </article>
+
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      'use strict';
+      function scalePreview() {
+        var wrapper = document.querySelector('.flyer-preview-wrapper');
+        if (!wrapper) return;
+        var sheetW = 297 * (96 / 25.4);
+        var available = window.innerWidth - 48;
+        var scale = available < sheetW ? available / sheetW : 1;
+        var sheetH = 210 * (96 / 25.4);
+        wrapper.style.transform = 'scale(' + scale + ')';
+        wrapper.style.transformOrigin = 'top center';
+        wrapper.style.marginBottom = ((sheetH * scale) - sheetH) + 'px';
+      }
+      scalePreview();
+      window.addEventListener('resize', scalePreview);
+    })();
+  </script>
+
+</body>
+</html>

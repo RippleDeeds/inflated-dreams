@@ -1,0 +1,635 @@
+/* ============================================================
+   INFLATED DREAMS — Print Flyer Stylesheet
+   2-up A4 Landscape (two A5 portrait panels per sheet)
+   Dark edition: flyer.html
+   Light edition: flyer-light.html (.flyer-panel--light modifier)
+
+   Print: A4 · Landscape · No margins · Background graphics ON
+   ============================================================ */
+
+/* ============================================================
+   SCREEN: PREVIEW CHROME
+   ============================================================ */
+.flyer-body {
+  background-color: #C8C3BC;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 36px 24px 72px;
+  font-family: var(--font-body);
+}
+
+.flyer-body--light {
+  background-color: #D4CFC9;
+}
+
+.flyer-screen-ui {
+  text-align: center;
+  margin-bottom: 28px;
+  width: 100%;
+  max-width: 620px;
+}
+
+.flyer-screen-title {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #3A3229;
+  margin-bottom: 16px;
+}
+
+.flyer-screen-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+
+.flyer-print-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-rose-gold) 100%);
+  color: var(--color-black);
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 13px 28px;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  text-decoration: none;
+  transition: opacity var(--transition-fast), transform var(--transition-fast);
+}
+
+.flyer-print-btn:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+
+.flyer-print-btn:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 3px;
+}
+
+.flyer-switch-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  color: #3A3229;
+  border: 1.5px solid rgba(58, 50, 41, 0.4);
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 12px 24px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  text-decoration: none;
+  transition: border-color var(--transition-fast), color var(--transition-fast), transform var(--transition-fast);
+}
+
+.flyer-switch-btn:hover {
+  border-color: rgba(58, 50, 41, 0.7);
+  color: #1A1614;
+  transform: translateY(-2px);
+}
+
+.flyer-switch-btn:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 3px;
+}
+
+.flyer-screen-hint {
+  font-size: 0.76rem;
+  color: rgba(58, 50, 41, 0.6);
+  line-height: 1.7;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.flyer-screen-hint strong {
+  color: rgba(58, 50, 41, 0.85);
+}
+
+/* ============================================================
+   SHEET: A4 LANDSCAPE CONTAINER
+   ============================================================ */
+.flyer-preview-wrapper {
+  box-shadow: 0 16px 60px rgba(0, 0, 0, 0.4), 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+.flyer-sheet {
+  width: 297mm;
+  height: 210mm;
+  display: flex;
+  flex-direction: row;
+  background: #fff;
+  overflow: hidden;
+}
+
+/* ============================================================
+   CUT GUIDE (screen only)
+   ============================================================ */
+.flyer-cut-guide {
+  width: 1px;
+  height: 210mm;
+  flex-shrink: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    #999 0,
+    #999 5px,
+    transparent 5px,
+    transparent 10px
+  );
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flyer-cut-icon {
+  font-size: 11px;
+  color: #888;
+  background: #C8C3BC;
+  padding: 2px;
+  line-height: 1;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* ============================================================
+   PANEL: A5 PORTRAIT (148.5mm × 210mm)
+   ============================================================ */
+.flyer-panel {
+  width: 148.5mm;
+  height: 210mm;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+  background-color: #0A0A0A;
+  background-image:
+    radial-gradient(ellipse at 20% 8%, rgba(201, 168, 76, 0.10) 0%, transparent 45%),
+    radial-gradient(ellipse at 85% 92%, rgba(199, 149, 108, 0.09) 0%, transparent 45%);
+}
+
+/* Inset decorative border frame */
+.flyer-panel::before {
+  content: '';
+  position: absolute;
+  inset: 4.5mm;
+  border: 0.35mm solid rgba(201, 168, 76, 0.22);
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* ---- Light panel overrides ---- */
+.flyer-panel--light {
+  background-color: #FEFCF6;
+  background-image:
+    radial-gradient(ellipse at 20% 8%, rgba(201, 168, 76, 0.12) 0%, transparent 45%),
+    radial-gradient(ellipse at 85% 92%, rgba(199, 149, 108, 0.10) 0%, transparent 45%);
+}
+
+.flyer-panel--light::before {
+  border-color: rgba(201, 168, 76, 0.45);
+}
+
+/* ============================================================
+   BACKGROUND GLOWS
+   ============================================================ */
+.flyer-bg-glow {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.flyer-bg-glow--gold {
+  width: 130mm;
+  height: 130mm;
+  top: -50mm;
+  left: -30mm;
+  background: radial-gradient(circle, rgba(201, 168, 76, 0.18) 0%, transparent 65%);
+  filter: blur(18px);
+}
+
+.flyer-bg-glow--rose {
+  width: 110mm;
+  height: 110mm;
+  bottom: -40mm;
+  right: -25mm;
+  background: radial-gradient(circle, rgba(199, 149, 108, 0.14) 0%, transparent 65%);
+  filter: blur(18px);
+}
+
+.flyer-panel--light .flyer-bg-glow--gold {
+  background: radial-gradient(circle, rgba(201, 168, 76, 0.16) 0%, transparent 65%);
+}
+
+.flyer-panel--light .flyer-bg-glow--rose {
+  background: radial-gradient(circle, rgba(199, 149, 108, 0.12) 0%, transparent 65%);
+}
+
+/* ============================================================
+   DECORATIVE BALLOONS (top-right cluster)
+   ============================================================ */
+.flyer-balloons {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 42mm;
+  height: 72mm;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.flyer-balloon {
+  position: absolute;
+}
+
+.flyer-balloon--a {
+  width: 22mm;
+  top: 5mm;
+  right: 5mm;
+}
+
+.flyer-balloon--b {
+  width: 16mm;
+  top: 3mm;
+  right: 23mm;
+}
+
+.flyer-balloon--c {
+  width: 13mm;
+  top: 18mm;
+  right: 22mm;
+}
+
+.flyer-balloon--d {
+  width: 11mm;
+  top: 22mm;
+  right: 6mm;
+}
+
+/* ============================================================
+   PANEL INNER LAYOUT — centered column
+   ============================================================ */
+.flyer-panel-inner {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  padding: 8mm 9mm 7mm;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+/* ============================================================
+   LOGO — large, centered
+   ============================================================ */
+.flyer-logo {
+  flex-shrink: 0;
+  margin-bottom: 2mm;
+}
+
+.flyer-logo-img {
+  height: 32mm;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+  border-radius: 10px;
+}
+
+/* ============================================================
+   BRAND NAME & EYEBROW
+   ============================================================ */
+.flyer-brand-name {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 15pt;
+  font-weight: 700;
+  color: #FAF0DC;
+  letter-spacing: 0.04em;
+  line-height: 1.15;
+  flex-shrink: 0;
+  margin-bottom: 1.5mm;
+}
+
+.flyer-panel--light .flyer-brand-name {
+  color: #1A1614;
+}
+
+.flyer-brand-sub {
+  font-size: 5.5pt;
+  font-weight: 700;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: #C9A84C;
+  flex-shrink: 0;
+  margin-bottom: 0;
+}
+
+/* ============================================================
+   ORNAMENTAL SEPARATOR  ✦ ─────────── ✦
+   ============================================================ */
+.flyer-ornament {
+  display: flex;
+  align-items: center;
+  gap: 3mm;
+  width: 100%;
+  flex-shrink: 0;
+  margin: 3.5mm 0;
+}
+
+.flyer-ornament::before,
+.flyer-ornament::after {
+  content: '';
+  flex: 1;
+  height: 0.3mm;
+  background: linear-gradient(90deg, transparent, rgba(201, 168, 76, 0.55), transparent);
+}
+
+.flyer-panel--light .flyer-ornament::before,
+.flyer-panel--light .flyer-ornament::after {
+  background: linear-gradient(90deg, transparent, rgba(201, 168, 76, 0.7), transparent);
+}
+
+.flyer-ornament-diamond {
+  color: #C9A84C;
+  font-size: 6pt;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+/* ============================================================
+   HEADLINE BLOCK
+   ============================================================ */
+.flyer-headline-block {
+  flex-shrink: 0;
+}
+
+.flyer-headline {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 20pt;
+  font-weight: 700;
+  color: #FAF0DC;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  margin-bottom: 2.5mm;
+}
+
+.flyer-headline em {
+  font-style: italic;
+  color: #E8C97A;
+}
+
+.flyer-panel--light .flyer-headline {
+  color: #1A1614;
+}
+
+.flyer-panel--light .flyer-headline em {
+  color: #B8882C;
+}
+
+.flyer-tagline {
+  font-size: 7.5pt;
+  font-style: italic;
+  color: rgba(245, 230, 204, 0.6);
+  line-height: 1.5;
+  letter-spacing: 0.01em;
+}
+
+.flyer-panel--light .flyer-tagline {
+  color: rgba(58, 50, 41, 0.6);
+}
+
+/* ============================================================
+   SERVICES GRID — centered 2-column
+   ============================================================ */
+.flyer-services {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2mm 4mm;
+  flex-shrink: 0;
+  list-style: none;
+  padding: 0;
+  width: 100%;
+}
+
+.flyer-service-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2mm;
+  font-size: 7.5pt;
+  color: rgba(245, 230, 204, 0.82);
+  letter-spacing: 0.02em;
+  line-height: 1.3;
+}
+
+.flyer-service-item i {
+  color: #C9A84C;
+  font-size: 7pt;
+  flex-shrink: 0;
+}
+
+.flyer-panel--light .flyer-service-item {
+  color: #3A3229;
+}
+
+/* ============================================================
+   QR CODE SECTION — the hero CTA
+   ============================================================ */
+.flyer-qr-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+  width: 100%;
+}
+
+.flyer-qr-scan-label {
+  font-size: 8pt;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #C9A84C;
+  margin-bottom: 3mm;
+  line-height: 1;
+}
+
+.flyer-qr-frame {
+  width: 44mm;
+  height: 44mm;
+  background: #FFFFFF;
+  padding: 2.5mm;
+  border: 0.6mm solid #C9A84C;
+  box-shadow:
+    0 0 0 1.5mm rgba(201, 168, 76, 0.12),
+    inset 0 0 0 0.3mm rgba(201, 168, 76, 0.15);
+  margin-bottom: 3mm;
+  flex-shrink: 0;
+}
+
+.flyer-panel--light .flyer-qr-frame {
+  border-color: #C9A84C;
+  box-shadow:
+    0 0 0 2mm rgba(201, 168, 76, 0.15),
+    inset 0 0 0 0.3mm rgba(201, 168, 76, 0.2);
+}
+
+.flyer-qr-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.flyer-qr-subtitle {
+  font-size: 8pt;
+  font-style: italic;
+  color: rgba(245, 230, 204, 0.55);
+  letter-spacing: 0.03em;
+  line-height: 1;
+}
+
+.flyer-panel--light .flyer-qr-subtitle {
+  color: rgba(58, 50, 41, 0.55);
+}
+
+/* ============================================================
+   FOOTER — social + email
+   ============================================================ */
+.flyer-footer {
+  margin-top: auto;
+  width: 100%;
+  flex-shrink: 0;
+}
+
+.flyer-footer-rule {
+  height: 0.3mm;
+  background: linear-gradient(90deg, transparent, rgba(201, 168, 76, 0.35), transparent);
+  margin-bottom: 3mm;
+}
+
+.flyer-panel--light .flyer-footer-rule {
+  background: linear-gradient(90deg, transparent, rgba(201, 168, 76, 0.5), transparent);
+}
+
+.flyer-footer-contacts {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2.5mm;
+  flex-wrap: wrap;
+  margin-bottom: 1.5mm;
+}
+
+.flyer-contact-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 1.5mm;
+  font-size: 10.5pt;
+  color: rgba(245, 230, 204, 0.65);
+  letter-spacing: 0.02em;
+}
+
+.flyer-contact-item i {
+  color: #C9A84C;
+  font-size: 10.5pt;
+}
+
+.flyer-contact-sep {
+  color: rgba(201, 168, 76, 0.4);
+  font-size: 7pt;
+}
+
+.flyer-panel--light .flyer-contact-item {
+  color: rgba(58, 50, 41, 0.65);
+}
+
+.flyer-panel--light .flyer-contact-sep {
+  color: rgba(201, 168, 76, 0.6);
+}
+
+.flyer-contact-email {
+  font-size: 8.5pt;
+  color: rgba(245, 230, 204, 0.4);
+  letter-spacing: 0.05em;
+}
+
+.flyer-panel--light .flyer-contact-email {
+  color: rgba(58, 50, 41, 0.45);
+}
+
+/* ============================================================
+   PRINT MEDIA
+   ============================================================ */
+@media print {
+  @page {
+    size: A4 landscape;
+    margin: 0;
+  }
+
+  html,
+  body {
+    margin: 0 !important;
+    padding: 0 !important;
+    background: none !important;
+  }
+
+  .flyer-body,
+  .flyer-body--light {
+    background: none !important;
+    padding: 0 !important;
+    min-height: unset !important;
+    display: block !important;
+  }
+
+  .flyer-screen-ui {
+    display: none !important;
+  }
+
+  .flyer-preview-wrapper {
+    box-shadow: none !important;
+    transform: none !important;
+    margin-bottom: 0 !important;
+  }
+
+  .flyer-sheet {
+    width: 297mm !important;
+    height: 210mm !important;
+    page-break-after: avoid;
+    break-after: avoid;
+  }
+
+  .flyer-panel {
+    width: 148.5mm !important;
+    height: 210mm !important;
+  }
+
+  .flyer-cut-guide {
+    display: none !important;
+  }
+
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+}
